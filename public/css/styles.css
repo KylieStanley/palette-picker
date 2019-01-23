@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-family: 'Satisfy', cursive;
+  text-align: center;
+  font-size: 4.5rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 40px;
+}
+
+i {
+  font-size: 1.5rem;
+}
+
+.color {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 300px;
+  flex: 1;
+}
+
+.palette {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.color1 {
+  background-color: blue;
+  /*left: 2%;*/
+}
+
+.color2 {
+  background-color: pink;
+  /*left: 20%;*/
+}
+
+.color3 {
+  background-color: green;
+}
+
+.color4 {
+  background-color: orange;
+  /*right: 20%;*/
+}
+
+.color5 {
+  background-color: red;
+  /*right: 2%;*/
+}
