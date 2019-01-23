@@ -36,26 +36,6 @@ i {
   width: 100vw;
 }
 
-.color1 {
-  background-color: blue;
-}
-
-.color2 {
-  background-color: pink;
-}
-
-.color3 {
-  background-color: green;
-}
-
-.color4 {
-  background-color: orange;
-}
-
-.color5 {
-  background-color: red;
-}
-
 .forms {
   display: flex;
   flex-direction: column;
