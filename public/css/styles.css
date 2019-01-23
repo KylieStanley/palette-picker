@@ -15,12 +15,24 @@ h1 {
   margin: 30px;
 }
 
-h4, button, input, select {
+h3 {
+  margin: 0 10px;
+}
+
+h3, h4, button, input, select, label {
   font-family: 'Roboto', sans-serif;
 }
 
 i {
   font-size: 1.5rem;
+}
+
+.fa-lock-open {
+  margin-left: 6px;
+}
+
+hr {
+  width: 90%
 }
 
 .color {
@@ -46,4 +58,11 @@ i {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.projects-container {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }

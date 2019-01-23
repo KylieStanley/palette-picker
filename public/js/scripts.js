@@ -1,18 +1,23 @@
 const colors = document.querySelectorAll('.color')
 const generateColorsBtn = document.querySelector('.generate-colors')
 const paletteContainer = document.querySelector('.palette')
+const createProjectBtn = document.querySelector('.create-project-btn')
+const paletteInput = document.querySelector('.palette-input')
+const projectInput = document.querySelector('.project-input')
+const projectContainer = document.querySelector('.projects-container')
+const select = document.querySelector('select')
 
 const generateColorPalette = () => {
   const values = '0123456789ABCDEF'
   
   colors.forEach(item => {
-    let color = '#'
-
-    for (let i = 0; i < 6; i++) {
-      color += values[(Math.floor(Math.random() * 16))]
-    }
-
     if (item.childNodes[1].className !== 'fas fa-lock') {
+      let color = '#'
+
+      for (let i = 0; i < 6; i++) {
+        color += values[(Math.floor(Math.random() * 16))]
+      }
+
       item.style.backgroundColor = color
       item.childNodes[3].innerText = color 
     }
@@ -27,9 +32,22 @@ const toggleLock = (e) => {
   }
 }
 
+const createProject = () => {
+  if (projectInput.value) {
+    const project = document.createElement('h3')
+    project.innerText = projectInput.value
+    projectContainer.appendChild(project)  
+    const option = document.createElement('option')
+    option.value = projectInput.value
+    option.innerText = projectInput.value
+    select.appendChild(option)
+  }
+}
+
 
 generateColorsBtn.addEventListener('click', generateColorPalette)
 paletteContainer.addEventListener('click', toggleLock)
+createProjectBtn.addEventListener('click', createProject)
 
 
 generateColorPalette()

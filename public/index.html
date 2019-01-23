@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Palette Picker</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -36,13 +36,16 @@
       <select>
         <option>Choose a Project</option>
       </select>
-      <input type="text" name="palette">
-      <button>+</button>
+      <input type="text" name="palette" placeholder="Palette Name" class="palette-input">
+      <button class="add-palette-btn">+</button>
     </form>
+    <hr>
     <div>
-      <input type="text" name="folder">
-      <button>+</button>
+      <label>Create a New Project:</label>
+      <input type="text" name="folder" placeholder="New project name" class="project-input">
+      <button class="create-project-btn">+</button>
     </div>
+    <div class="projects-container"></div>
   </section>
   <script type="text/javascript" src="js/scripts.js"></script>
 </body>
