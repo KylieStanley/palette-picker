@@ -38,12 +38,10 @@ i {
 
 .color1 {
   background-color: blue;
-  /*left: 2%;*/
 }
 
 .color2 {
   background-color: pink;
-  /*left: 20%;*/
 }
 
 .color3 {
@@ -52,10 +50,15 @@ i {
 
 .color4 {
   background-color: orange;
-  /*right: 20%;*/
 }
 
 .color5 {
   background-color: red;
-  /*right: 2%;*/
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
