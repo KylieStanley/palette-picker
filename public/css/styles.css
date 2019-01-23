@@ -12,7 +12,11 @@ h1 {
   font-size: 4.5rem;
   font-weight: 600;
   letter-spacing: 2px;
-  margin: 40px;
+  margin: 30px;
+}
+
+h4, button, input, select {
+  font-family: 'Roboto', sans-serif;
 }
 
 i {
@@ -34,6 +38,7 @@ i {
   display: flex;
   justify-content: center;
   width: 100vw;
+  margin: 20px 0;
 }
 
 .forms {
