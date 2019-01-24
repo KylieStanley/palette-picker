@@ -15,16 +15,51 @@ app.locals.title = 'Palette Picker';
 app.locals.projects = []
 
 app.get('/api/v1/projects', (request, response) => {
-  const projects = app.locals.projects;
-  return response.json({ projects });
+  database('projects').select()
+    .then((projects) => {
+      response.status(200).json(projects);
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
 });
 
-app.post('/api/v1/projects', (request, response) => {
-  const { project } = request.body
-  const id = Date.now()
+app.get('/api/v1/projects/:project_id/palettes', (request, response) => {
+  database('palettes').where('project_id', request.params.project_id).select()
+    .then((palettes) => {
+      response.status(200).json(palettes);
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+})
 
-  app.locals.projects.push({...project, id})
-  response.status(201).json({ id, project })
+app.post('/api/v1/projects', (request, response) => {
+  const project = request.body
+
+  for (let requiredParameter of ['name']) {
+    if (!project[requiredParameter]) {
+      return response.status(422)
+        .send({ error: `Expected format: { name: <String> }. You're missing a "${requiredParameter}" property.` });
+    }
+  }
+
+  database('projects').insert(project, 'id')
+    .then(project => {
+      response.status(201).json({ id: project[0] })
+    })
+    .catch(error => {
+      response.status(500).json({ error })
+  })
+})
+
+app.post('/api/v1/projects/:project_id/palettes', (request, response) => {
+  const palette = request.body
+
+  database('palettes').insert(palette, 'id')
+    .then(palette => {
+      response.status(201).json({ id: palette[0] })
+    })
 })
 
 app.listen(app.get('port'), () => {
