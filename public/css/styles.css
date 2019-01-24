@@ -6,13 +6,18 @@ body {
   margin: 0;
 }
 
+
+h3, h4, button, input, select, label {
+  font-family: 'Roboto', sans-serif;
+}
+
 h1 {
   font-family: 'Satisfy', cursive;
-  text-align: center;
   font-size: 4.5rem;
   font-weight: 600;
   letter-spacing: 2px;
   margin: 30px;
+  text-align: center;
 }
 
 h3 {
@@ -24,17 +29,22 @@ h5 {
   margin: 5px;
 }
 
-h3, h4, button, input, select, label {
-  font-family: 'Roboto', sans-serif;
+form {
+  margin: 10px;
 }
 
-i {
-  font-size: 1.5rem;
+.fa-lock-open, .fa-lock {
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .fa-lock-open {
   margin-left: 6px;
+}
+
+.fa-trash-alt {
+  font-size: .9rem;
+  margin-left: 5px;
 }
 
 hr {
@@ -42,44 +52,52 @@ hr {
 }
 
 .color {
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
   align-items: center;
-  height: 300px;
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  height: 300px;
+  justify-content: flex-end;
+  padding: 18px;
 }
 
 .palette {
-  position: relative;
   display: flex;
   justify-content: center;
-  width: 100vw;
   margin: 20px 0;
+  position: relative;
+  width: 100vw;
 }
 
 .forms {
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
 .projects-container {
-  margin: 20px 0;
   display: flex;
   justify-content: center;
+  margin: 20px 0;
   width: 100%;
 }
 
 .saved-palette {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .hex-box {
+  border-radius: 10px;
   height: 15px;
   width: 15px;
-  border-radius: 10px;
+}
+
+.generate-colors {
+  border-radius: 38px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  outline: none;
+  padding: 13px 15px;
 }

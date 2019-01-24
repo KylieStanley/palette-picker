@@ -58,12 +58,18 @@ app.post('/api/v1/projects/:project_id/palettes', (request, response) => {
     .then(palette => {
       response.status(201).json({...request.body, id: palette[0] })
     })
+    .catch(error => {
+      response.status(500).json({ error })
+    })
 })
 
 app.delete('/api/v1/palettes/:id', (request, response) => {
   database('palettes').where('id', request.params.id).delete()
     .then(palette => {
       response.status(201).json({ id: palette[0] })
+    })
+    .catch(error => {
+      response.status(500).json({ error })
     })
 })
 

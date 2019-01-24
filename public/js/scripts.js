@@ -38,7 +38,7 @@ const createProject = () => {
   if (projectInput.value) {
     const project = document.createElement('h3')
     project.innerText = projectInput.value
-    project.className = projectInput.value
+    project.className = projectInput.value.split(' ').join('-')
     projectContainer.appendChild(project)  
     const option = document.createElement('option')
     option.innerText = projectInput.value
@@ -48,15 +48,23 @@ const createProject = () => {
 }
 
 const createPalette = (e) => {
+  const selectedProject = select.options[select.selectedIndex].value
   e.preventDefault()
-  const projectName = select.options[select.selectedIndex].value
-  postPalette(projectName)
+  if (selectedProject !== 'Choose a Project') {
+    postPalette(selectedProject)
+  }
 }
 
 const getAllProjects = async () => {
   const response = await fetch('/api/v1/projects')
   const projects = await response.json()
   return projects;
+}
+
+const getAllPalettes = async (id) => {
+  const response = await fetch(`/api/v1/projects/${id}/palettes`)
+  const result = response.json()
+  return result;
 }
 
 const postProject = async (project) => {
@@ -95,7 +103,8 @@ const postPalette = async (projectName) => {
 }
 
 const addPalettetoPage = (paletteObj, matchedProject) => {
-  const project = document.querySelector(`.${matchedProject.name}`)
+  const project = document.querySelector(`.${matchedProject.name.split(' ').join('-')}`)
+
   const addedPalette = document.createElement('div')
   addedPalette.className = 'saved-palette'
   addedPalette.innerHTML = 
@@ -104,10 +113,29 @@ const addPalettetoPage = (paletteObj, matchedProject) => {
     <div class="hex-box" style="background-color:${paletteObj.color_2}"></div>
     <div class="hex-box" style="background-color:${paletteObj.color_3}"></div>
     <div class="hex-box" style="background-color:${paletteObj.color_4}"></div>
-    <div class="hex-box" style="background-color:${paletteObj.color_5}"></div>`
+    <div class="hex-box" style="background-color:${paletteObj.color_5}"></div>
+    <i class="fas fa-trash-alt"></i>`
   project.appendChild(addedPalette)
 }
 
+const getAllFromDatabase = async () => {
+  const projects = await getAllProjects()
+
+  projects.forEach(async project => {
+    const newProject = document.createElement('h3')
+    newProject.innerText = project.name
+    newProject.className = project.name.split(' ').join('-')
+    projectContainer.appendChild(newProject)  
+    const option = document.createElement('option')
+    option.innerText = project.name
+    select.appendChild(option)
+
+    const palettes = await getAllPalettes(project.id)
+    palettes.forEach(palette => {
+      addPalettetoPage(palette, project)
+    })
+  })
+}
 
 generateColorsBtn.addEventListener('click', generateColorPalette)
 paletteContainer.addEventListener('click', toggleLock)
@@ -116,3 +144,4 @@ addPaletteBtn.addEventListener('click', createPalette)
 
 
 generateColorPalette()
+getAllFromDatabase()
