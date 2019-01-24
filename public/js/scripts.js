@@ -41,7 +41,30 @@ const createProject = () => {
     option.value = projectInput.value
     option.innerText = projectInput.value
     select.appendChild(option)
+    postProject(projectInput.value)
   }
+}
+
+const postProject = async (project) => {
+  const response = await fetch('/api/v1/projects', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({name: project, palettes: []})
+  })
+  const result = await response.json()
+}
+
+const postPalette = async (project) => {
+  const response = await fetch('/api/v1/projects', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({name: project, palettes: []})
+  })
+  const result = await response.json()
 }
 
 

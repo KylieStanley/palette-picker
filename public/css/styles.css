@@ -25,6 +25,7 @@ h3, h4, button, input, select, label {
 
 i {
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .fa-lock-open {
