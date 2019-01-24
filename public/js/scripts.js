@@ -1,4 +1,5 @@
 const colors = document.querySelectorAll('.color')
+const hexCode = document.querySelectorAll('.hex-code')
 const generateColorsBtn = document.querySelector('.generate-colors')
 const paletteContainer = document.querySelector('.palette')
 const createProjectBtn = document.querySelector('.create-project-btn')
@@ -37,6 +38,7 @@ const createProject = () => {
   if (projectInput.value) {
     const project = document.createElement('h3')
     project.innerText = projectInput.value
+    project.className = projectInput.value
     projectContainer.appendChild(project)  
     const option = document.createElement('option')
     option.innerText = projectInput.value
@@ -70,7 +72,6 @@ const postProject = async (project) => {
 
 const postPalette = async (projectName) => {
   const projects = await getAllProjects()
-  console.log(projects)
   const matchedProject = projects.find(project => project.name === projectName)
 
   const response = await fetch(`/api/v1/projects/${matchedProject.id}/palettes`, {
@@ -80,16 +81,31 @@ const postPalette = async (projectName) => {
     },
     body: JSON.stringify({ 
       name: paletteInput.value,
-      color_1: colors[0].value,
-      color_2: colors[1].value,
-      color_3: colors[2].value,
-      color_4: colors[3].value,
-      color_5: colors[4].value,
+      color_1: hexCode[0].innerText,
+      color_2: hexCode[1].innerText,
+      color_3: hexCode[2].innerText,
+      color_4: hexCode[3].innerText,
+      color_5: hexCode[4].innerText,
       project_id: matchedProject.id
     })
   })
-  
+
   const result = await response.json()
+  addPalettetoPage(result, matchedProject)
+}
+
+const addPalettetoPage = (paletteObj, matchedProject) => {
+  const project = document.querySelector(`.${matchedProject.name}`)
+  const addedPalette = document.createElement('div')
+  addedPalette.className = 'saved-palette'
+  addedPalette.innerHTML = 
+    `<h5>${paletteObj.name}:</h5>
+    <div class="hex-box" style="background-color:${paletteObj.color_1}"></div>
+    <div class="hex-box" style="background-color:${paletteObj.color_2}"></div>
+    <div class="hex-box" style="background-color:${paletteObj.color_3}"></div>
+    <div class="hex-box" style="background-color:${paletteObj.color_4}"></div>
+    <div class="hex-box" style="background-color:${paletteObj.color_5}"></div>`
+  project.appendChild(addedPalette)
 }
 
 

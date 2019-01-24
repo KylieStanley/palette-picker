@@ -12,8 +12,6 @@ app.set("port", process.env.PORT || 3000);
 
 app.locals.title = 'Palette Picker';
 
-app.locals.projects = []
-
 app.get('/api/v1/projects', (request, response) => {
   database('projects').select()
     .then((projects) => {
@@ -58,14 +56,12 @@ app.post('/api/v1/projects/:project_id/palettes', (request, response) => {
 
   database('palettes').insert(palette, 'id')
     .then(palette => {
-      response.status(201).json({ id: palette[0] })
+      response.status(201).json({...request.body, id: palette[0] })
     })
 })
 
 app.delete('/api/v1/palettes/:id', (request, response) => {
-  const id = request.params.id
-
-  database('palettes').where('id', id).delete()
+  database('palettes').where('id', request.params.id).delete()
     .then(palette => {
       response.status(201).json({ id: palette[0] })
     })

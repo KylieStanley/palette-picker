@@ -19,6 +19,11 @@ h3 {
   margin: 0 10px;
 }
 
+h5 {
+  font-size: .8rem;
+  margin: 5px;
+}
+
 h3, h4, button, input, select, label {
   font-family: 'Roboto', sans-serif;
 }
@@ -66,4 +71,15 @@ hr {
   display: flex;
   justify-content: center;
   width: 100%;
+}
+
+.saved-palette {
+  display: flex;
+  align-items: center;
+}
+
+.hex-box {
+  height: 15px;
+  width: 15px;
+  border-radius: 10px;
 }
