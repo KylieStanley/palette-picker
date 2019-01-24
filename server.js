@@ -50,13 +50,22 @@ app.post('/api/v1/projects', (request, response) => {
     })
     .catch(error => {
       response.status(500).json({ error })
-  })
+    })
 })
 
 app.post('/api/v1/projects/:project_id/palettes', (request, response) => {
   const palette = request.body
 
   database('palettes').insert(palette, 'id')
+    .then(palette => {
+      response.status(201).json({ id: palette[0] })
+    })
+})
+
+app.delete('/api/v1/palettes/:id', (request, response) => {
+  const id = request.params.id
+
+  database('palettes').where('id', id).delete()
     .then(palette => {
       response.status(201).json({ id: palette[0] })
     })
