@@ -16,7 +16,7 @@ h1 {
   font-size: 4.5rem;
   font-weight: 600;
   letter-spacing: 2px;
-  margin: 30px;
+  margin: 26px;
   text-align: center;
 }
 
@@ -43,6 +43,7 @@ form {
 }
 
 .fa-trash-alt {
+  cursor: pointer;
   font-size: .9rem;
   margin-left: 5px;
 }
@@ -90,6 +91,7 @@ hr {
 
 .hex-box {
   border-radius: 10px;
+  cursor: pointer;
   height: 15px;
   width: 15px;
 }

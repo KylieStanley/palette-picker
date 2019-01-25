@@ -26,6 +26,13 @@ const generateColorPalette = () => {
   })
 }
 
+const chooseColorPalette = (e) => {
+  const children = [].slice.call(e.target.parentNode.querySelectorAll('.hex-box'))
+  const hexCodes = children.map(hexCode => hexCode.id)
+
+  colors.forEach((color, i) => color.style.backgroundColor = hexCodes[i])
+}
+
 const toggleLock = (e) => {
   if (e.target.className === 'fas fa-lock-open') {
     e.target.className = 'fas fa-lock'
@@ -35,7 +42,10 @@ const toggleLock = (e) => {
 }
 
 const createProject = () => {
-  if (projectInput.value) {
+  const options = [].slice.call(select.options)
+  const existingProject = options.find(option => option.value === projectInput.value)
+
+  if (projectInput.value && !existingProject) {
     const project = document.createElement('h3')
     project.innerText = projectInput.value
     project.className = projectInput.value.split(' ').join('-')
@@ -107,13 +117,14 @@ const addPalettetoPage = (paletteObj, matchedProject) => {
 
   const addedPalette = document.createElement('div')
   addedPalette.className = 'saved-palette'
+  addedPalette.id = paletteObj.id
   addedPalette.innerHTML = 
     `<h5>${paletteObj.name}:</h5>
-    <div class="hex-box" style="background-color:${paletteObj.color_1}"></div>
-    <div class="hex-box" style="background-color:${paletteObj.color_2}"></div>
-    <div class="hex-box" style="background-color:${paletteObj.color_3}"></div>
-    <div class="hex-box" style="background-color:${paletteObj.color_4}"></div>
-    <div class="hex-box" style="background-color:${paletteObj.color_5}"></div>
+    <div class="hex-box" id=${paletteObj.color_1} style="background-color:${paletteObj.color_1}"></div>
+    <div class="hex-box" id=${paletteObj.color_2} style="background-color:${paletteObj.color_2}"></div>
+    <div class="hex-box" id=${paletteObj.color_3} style="background-color:${paletteObj.color_3}"></div>
+    <div class="hex-box" id=${paletteObj.color_4} style="background-color:${paletteObj.color_4}"></div>
+    <div class="hex-box" id=${paletteObj.color_5} style="background-color:${paletteObj.color_5}"></div>
     <i class="fas fa-trash-alt"></i>`
   project.appendChild(addedPalette)
 }
@@ -137,10 +148,30 @@ const getAllFromDatabase = async () => {
   })
 }
 
+const deletePalette = (e) => {
+  const el = e.target.parentNode
+  const id = el.id
+
+  fetch(`/api/v1/palettes/${id}`, {
+    method: 'DELETE'
+  })
+
+  el.parentNode.removeChild(el)
+}
+
+const handleEvent = (e) => {
+  if (e.target.className === 'fas fa-trash-alt') {
+    deletePalette(e)
+  } else if (e.target.className === 'hex-box') {
+    chooseColorPalette(e)
+  }
+}
+
 generateColorsBtn.addEventListener('click', generateColorPalette)
 paletteContainer.addEventListener('click', toggleLock)
 createProjectBtn.addEventListener('click', createProject)
 addPaletteBtn.addEventListener('click', createPalette)
+projectContainer.addEventListener('click', handleEvent)
 
 
 generateColorPalette()

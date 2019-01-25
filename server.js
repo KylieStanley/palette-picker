@@ -10,8 +10,6 @@ app.use(express.static('public'));
 
 app.set("port", process.env.PORT || 3000);
 
-app.locals.title = 'Palette Picker';
-
 app.get('/api/v1/projects', (request, response) => {
   database('projects').select()
     .then((projects) => {
