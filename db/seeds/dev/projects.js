@@ -1,5 +1,5 @@
 
-exports.seed = function(knex, Promise) {
+exports.seed = ((knex, Promise) => {
   return knex('palettes').del()
     .then(() => knex('projects').del())
     .then(() => {
@@ -32,4 +32,4 @@ exports.seed = function(knex, Promise) {
       ])
     })
     .catch(error => console.log(`Error seeding data: ${error}`));
-};
+});
