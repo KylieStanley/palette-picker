@@ -46,9 +46,9 @@ const createProject = () => {
   const existingProject = options.find(option => option.value === projectInput.value)
 
   if (projectInput.value && !existingProject) {
-    const project = document.createElement('h3')
-    project.innerText = projectInput.value
+    const project = document.createElement('div')
     project.className = projectInput.value.split(' ').join('-')
+    project.innerHTML = `<div class="project-title"><h3>${projectInput.value}</h3></div>`
     projectContainer.appendChild(project)  
     const option = document.createElement('option')
     option.innerText = projectInput.value
@@ -58,8 +58,8 @@ const createProject = () => {
 }
 
 const createPalette = (e) => {
-  const selectedProject = select.options[select.selectedIndex].value
   e.preventDefault()
+  const selectedProject = select.options[select.selectedIndex].value
   if (selectedProject !== 'Choose a Project') {
     postPalette(selectedProject)
   }
@@ -133,9 +133,9 @@ const getAllFromDatabase = async () => {
   const projects = await getAllProjects()
 
   projects.forEach(async project => {
-    const newProject = document.createElement('h3')
-    newProject.innerText = project.name
+    const newProject = document.createElement('div')
     newProject.className = project.name.split(' ').join('-')
+    newProject.innerHTML = `<div class="project-title"><h3>${project.name}</h3></div>`
     projectContainer.appendChild(newProject)  
     const option = document.createElement('option')
     option.innerText = project.name
