@@ -7,7 +7,7 @@ body {
 }
 
 
-h3, h4, button, input, select, label {
+h4, h5, button, input, select, label {
   font-family: 'Roboto', sans-serif;
 }
 
@@ -21,12 +21,16 @@ h1 {
 }
 
 h3 {
+  font-family: 'Satisfy', cursive;
+  font-weight: 400;
+  letter-spacing: 1.5px;
   margin: 0 10px;
 }
 
 h5 {
   font-size: .8rem;
   margin: 5px;
+  width: 55px;
 }
 
 form {
@@ -66,8 +70,6 @@ hr {
   display: flex;
   justify-content: center;
   margin: 20px 0;
-  position: relative;
-  width: 100vw;
 }
 
 .forms {
@@ -79,21 +81,32 @@ hr {
 
 .projects-container {
   display: flex;
-  justify-content: center;
   margin: 20px 0;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.projects-container > div {
+  flex: 0 0 33.3333%
+}
+
+.project-title {
+  background: black;
+  color: white;
+  margin-top: 10px;
   width: 100%;
 }
 
 .saved-palette {
   align-items: center;
   display: flex;
+  height: 40px;
 }
 
 .hex-box {
-  border-radius: 10px;
   cursor: pointer;
-  height: 15px;
-  width: 15px;
+  height: 35px;
+  width: 39px;
 }
 
 .generate-colors {
@@ -102,4 +115,11 @@ hr {
   font-size: 1.3rem;
   outline: none;
   padding: 13px 15px;
+}
+
+.add-palette-btn,
+.create-project-btn {
+  border-radius: 20px;
+  padding: 2px 7px;
+}
 }

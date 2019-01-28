@@ -71,6 +71,7 @@ app.delete('/api/v1/palettes/:id', (request, response) => { //endpoint for delet
     })
 })
 
-app.listen(app.get('port'), () => { //Listen for connections on the port 
-  console.log(`${app.locals.title} is running on ${app.get('port')}.`);
+
+app.listen(app.get('port'), () => {
+  console.log(`Palette Picker is running on ${app.get('port')}.`);
 });
