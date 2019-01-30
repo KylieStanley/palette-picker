@@ -1,4 +1,12 @@
 language: node_js
-
-node_js: 
-  - "7"
+node_js:
+- '7'
+services:
+- postgresql
+notifications:
+  email: false
+deploy:
+  api_key:
+    secure: LDAMcXFBgyqsI78cHUqovtlahTSRy0kijPM3nnfj3RWtgIxZYXNIO3ZCB6cpb7OdsFzFKALe+9Sj18yosd+3xdaU3QfTDjU6GpahCenlhxwTDD0wjkw8TW9K3ySM5uUg5rrWLcIDqwwQx008594pNHzzofLvs5nidUh/UZsivfnxsZx71uWNuE3+rjoWGP7bLpSBPqZBVLGnWPdmvHL87yuWAZD5RbiDL/vJP86mKbi09WWwfPQ/Wp1g/DH+ILIAbMAR+2eRaCVno5TAPp30ZKGW8lOPbEfdGA86dQnu6rkAO1e1JmrQaXUJ/CahFRWHJInKWo9zpGjHiYBjzJptbkj6iZvf60+1ZSsH9h2OLGhYIe6BCjJpcODqJnLAw5mSwWoTMQ0n9626bFomdrPqMYytXNgZD/FmlgUB8Dv8gLPNGX1cq3P4tDfne7eWOaSb3+U+bBz5E5K0Wl5iIY5p4WPGq+GPvSoRBAunNqROPQ9ToCs/SXjxbTPXWpQejVJmGamSfsrn8vPvlJELcfcmNGD/n5CaZ5QrumM5lEG6wuA8hv5t0LjvqxBEcXe56pYCF/gX0hq95MtHsb3WprBTkMEUmTJfwZxfv1UN5D2Q3BcbCFmY7x5KHPTim8T3+hooADGHdorquHIhke8l/dxnm68e8uszOs5w8StH+ID0ALU=
+app: palette-picker-ks
+  skip_cleanup: true
